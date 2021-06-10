@@ -1,4 +1,5 @@
 ﻿using IsaacPrueba.Models;
+using IsaacPrueba.Repo;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -13,14 +14,33 @@ namespace IsaacPrueba.Controllers
     {
         private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+
+        private readonly Repository _repo;
+
+        public HomeController(ILogger<HomeController> logger, Repository repository)
         {
             _logger = logger;
+
+            _repo = repository;
         }
 
         public IActionResult Index()
         {
-            return View();
+
+            try
+            {
+                var employee = _repo.GetIngresoAportables();
+
+                return View(employee);
+            }
+            catch (Exception ex)
+            {
+                return View();
+            }
+
+          
+
+            
         }
 
         public IActionResult Privacy()

@@ -1,4 +1,5 @@
 using IsaacPrueba.Data;
+using IsaacPrueba.Repo;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -34,7 +35,7 @@ namespace IsaacPrueba
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddControllersWithViews();
             services.AddRazorPages();
-            //services.AddScoped<Repositorio>();
+            services.AddScoped<Repository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
